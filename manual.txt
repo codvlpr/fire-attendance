@@ -1,0 +1,5 @@
+Usage: python [OPTION]
+
+OPTION:
+--read		Starts the reader and will mark the attendance
+--register	Starts the reader and will register a new card	
