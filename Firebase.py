@@ -1,9 +1,10 @@
 import pyrebase
 import json
-
+import os
 class Firebase:
 	"""docstring for Firebase"""
-	CONFIG_FILE_LOCATION = './config.json'
+	BASE=os.path.dirname(os.path.realpath(__file__))
+	CONFIG_FILE_LOCATION=BASE+'/config.json'
 	EMPLOYEE_NODE = 'employees'
 	ATTENDANCE_NODE = 'attendance'
 	

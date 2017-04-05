@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 from Read import Read
+from Attendance import Attendance
 import sys
+
 
 if len(sys.argv) > 1:
 	PASSED_ARG = sys.argv[1]
@@ -13,6 +15,8 @@ if len(sys.argv) > 1:
 	elif PASSED_ARG == "--read":
 		MODE = 1
 		Read(MODE).start()
+	elif PASSED_ARG == "--offline":
+		Attendance().markOfflineAttendance()
 	elif PASSED_ARG == "--help":
 		print open("manual.txt", "r").read() 
 	else:

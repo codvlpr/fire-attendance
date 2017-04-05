@@ -24,6 +24,7 @@ var/
 .installed.cfg
 *.egg
 
+config.json
 firebase-admin-sdk.json
 
 # PyInstaller

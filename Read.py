@@ -16,10 +16,6 @@ class Read():
     def __init__(self, mode):
         GPIO.setmode(GPIO.BOARD)
         self.__led(self.LED_RED, 1)
-        self.__led(self.LED_GREEN, 1)
-        time.sleep(1)
-        self.__led(self.LED_GREEN, 0)
-
         self.CONTINUE_READING = True
         if mode:
             print 'Scan a card to mark attendance'
@@ -50,6 +46,7 @@ class Read():
         # Create an object of the class MFRC522
         MIFAREReader = MFRC522.MFRC522()
 
+
         # This loop keeps checking for chips. If one is near it will get the UID and authenticate
         while self.CONTINUE_READING:
             
@@ -59,6 +56,12 @@ class Read():
             # Get the UID of the card
             (status,uid) = MIFAREReader.MFRC522_Anticoll()
 
+            # If a card is found
+            if status == MIFAREReader.MI_OK:
+                self.__led(self.LED_GREEN, 1)
+                time.sleep(0.5)
+                self.__led(self.LED_GREEN, 0)
+                
             # If we have the UID, continue
             if status == MIFAREReader.MI_OK:
                 RFID = str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
