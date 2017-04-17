@@ -32,9 +32,16 @@ You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 
 ##Usage
 1. Set your Firebase credentials in config.json
+
 2. Import Firebase Admin SDK from Firebase console
+
 3. In order to run this module on Raspberry PI's startup open up */etc/rc.local* and add the below line before *exit 0*
 	sh /path/to/fire-attendance/launcher.sh &
+
 4. In order to pull the offline data in your Firebase you need to set up a cronjob that'll do that for you. Open crontab as root and add the below job
-	* * * * * python /path/to/fire-attendance/app.py --offline
-5. python /path/to/fire-attendance/app.py --help
+	m h dom mon dow python /path/to/fire-attendance/app.py --offline
+
+5. In order to receive attendance report of the day passed in email set the configuration in ´email.config.json´ and then run the below command to get the email. You can add this script in your crontab to get the report on daily basis.
+	python /path/to/fire-attendance/app.py --email
+
+6. python /path/to/fire-attendance/app.py --help

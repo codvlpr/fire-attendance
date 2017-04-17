@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 from Read import Read
 from Attendance import Attendance
+from Email import Email
 import sys
 
 
@@ -17,6 +18,8 @@ if len(sys.argv) > 1:
 		Read(MODE).start()
 	elif PASSED_ARG == "--offline":
 		Attendance().markOfflineAttendance()
+	elif PASSED_ARG == "--email":
+		Email().send()
 	elif PASSED_ARG == "--help":
 		print open("manual.txt", "r").read() 
 	else:
