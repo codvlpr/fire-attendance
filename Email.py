@@ -41,7 +41,7 @@ class Email():
 		else:
 			msg = MIMEMultipart()
 			msg['From'] = self.CONFIG['email']
-			msg['To'] = self.CONFIG['recipient']
+			msg['To'] = ', '.join(self.CONFIG['recipient'])
 			msg['Subject'] = "Attendance - " + self.DATE.strftime("%A, %Y-%m-%d")
 			
 			if self.CONFIG['bcc']:
