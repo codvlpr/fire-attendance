@@ -26,6 +26,7 @@ var/
 
 config.json
 firebase-admin-sdk.json
+email.config.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

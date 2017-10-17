@@ -24,14 +24,18 @@ class Email():
 		pass
 
 	def __prepareMsg(self):
-		attendance = self.FIREBASE.child(self.ATTENDANCE_NODE).child(self.DATE.strftime("%Y-%m-%d")).get().each()
-		if attendance is not None:
-			msg = "Check the below details\n\n"
-			for data in attendance:
-				msg += "Employee Name: " + data.key() + "\n" + "Time In: " + data.val()['time_in'] + "\n" + "Time Out: " + data.val()['time_out'] + "\n\n"
-			attendance = msg
-			pass
-		return attendance
+		message = ""
+		for x in xrange(1,7):
+			day_back = datetime.datetime.now() - datetime.timedelta(days = x)
+			attendance = self.FIREBASE.child(self.ATTENDANCE_NODE).child(day_back.strftime("%Y-%m-%d")).get().each()
+			if attendance is not None:
+				message += "Check the below details for " + day_back.strftime("%A, %Y-%m-%d") + "\n\n"
+				for data in attendance:
+					message += "Employee Name: " + data.key() + "\n" + "Time In: " + data.val()['time_in'] + "\n" + "Time Out: " + data.val()['time_out'] + "\n\n"
+			else:
+				message += "N/A for " + day_back.strftime("%A, %Y-%m-%d") + "\n\n"
+			message += "------------------------------------------------ \n\n"
+		return message
 		pass
 
 	def send(self):
